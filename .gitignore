@@ -1,0 +1,13 @@
+.DS_Store
+**/.DS_Store
+
+# Materiais brutos originais (docx, PNGs pesados, UGCs originais, zip)
+assets iniciais/
+
+# Arquivos brutos soltos na raiz
+/*.png
+/*.jpg
+/*.jpeg
+/*.mp4
+/*.mov
+/*.webp
