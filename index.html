@@ -1666,6 +1666,20 @@
       }
     }
 
+    // Repassa as UTMs da página atual pro link de checkout (Yampi não herda automaticamente)
+    function withUtms(url) {
+      try {
+        const u = new URL(url);
+        const current = new URLSearchParams(window.location.search);
+        current.forEach((value, key) => {
+          if (!u.searchParams.has(key)) u.searchParams.set(key, value);
+        });
+        return u.toString();
+      } catch (e) {
+        return url;
+      }
+    }
+
     // Checkout — um link Yampi por kit
     const CHECKOUT_URLS = {
       '1-kit':  'https://hidrabene.pay.yampi.com.br/r/6AZG3M30PU',
@@ -1675,7 +1689,7 @@
     function comprarAgora(kit) {
       const url = CHECKOUT_URLS[kit];
       if (url) {
-        window.location.href = url;
+        window.location.href = withUtms(url);
         return;
       }
       alert('Kit Clareador Facial Hidrabene' + (kit ? '\nKit: ' + kit : '') + '\n\nLink de checkout não configurado para este kit (CHECKOUT_URLS).');
